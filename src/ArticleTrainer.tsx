@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ScoreDisplay from './components/ScoreDisplay';
 import ArticlePerformance from './components/ArticlePerformance';
 import WordDisplay from './components/WordDisplay';
@@ -19,6 +19,7 @@ const ArticleTrainer = () => {
         die: { correct: 0, total: 0 },
         das: { correct: 0, total: 0 },
     });
+    const nextWordButtonRef = useRef<HTMLButtonElement>(null);
 
     const loadNewWord = () => {
         const randomIndex = Math.floor(Math.random() * germanNouns.length);
@@ -30,6 +31,12 @@ const ArticleTrainer = () => {
     useEffect(() => {
         loadNewWord();
     }, []);
+
+    useEffect(() => {
+        if (showAnswer && nextWordButtonRef.current) {
+            nextWordButtonRef.current.focus();
+        }
+    }, [showAnswer]);
 
     const handleArticleSelection = (selectedArticle: Article) => {
         if (!currentWord || showAnswer) return;
@@ -98,7 +105,8 @@ const ArticleTrainer = () => {
             />
             {showAnswer && (
                 <button
-                    className='w-full py-2 bg-gray-800 hover:bg-gray-900 text-white font-bold rounded'
+                    ref={nextWordButtonRef}
+                    className='w-full py-2 bg-gray-800 hover:bg-gray-900 text-white font-bold rounded focus:outline-2 focus:outline-offset-2 focus:outline-violet-500'
                     onClick={loadNewWord}
                 >
                     Next Word
