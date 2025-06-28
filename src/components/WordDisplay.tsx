@@ -24,17 +24,6 @@ const WordDisplay: React.FC<WordDisplayProps> = ({
             <div className='text-sm text-gray-600 mb-3'>
                 ({currentWord.translation})
             </div>
-            {feedback && (
-                <div
-                    className={`text-sm font-medium mb-3 ${
-                        feedback.includes('Correct')
-                            ? 'text-green-600'
-                            : 'text-red-600'
-                    }`}
-                >
-                    {feedback}
-                </div>
-            )}
             <div className='grid grid-cols-3 gap-2 mt-4'>
                 <button
                     className={`py-2 px-4 rounded-md font-bold text-white bg-blue-500 hover:bg-blue-600 ${
@@ -70,6 +59,17 @@ const WordDisplay: React.FC<WordDisplayProps> = ({
                     das
                 </button>
             </div>
+            {feedback && (
+                <div
+                    className={`text-sm font-medium mt-3 ${
+                        feedback.includes('Correct')
+                            ? 'text-green-600'
+                            : 'text-red-600'
+                    }`}
+                >
+                    {feedback}
+                </div>
+            )}
         </div>
     );
 };

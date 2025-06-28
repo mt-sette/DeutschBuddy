@@ -97,19 +97,6 @@ const ArticleTrainer = () => {
                 handleArticleSelection={handleArticleSelection}
             />
             {showAnswer && (
-                <div className='bg-yellow-50 p-3 rounded text-center text-sm mb-4'>
-                    <p>
-                        Tip:{' '}
-                        <span className='font-medium'>{currentWord.word}</span>{' '}
-                        is a{' '}
-                        <span className='font-medium'>
-                            {currentWord.category}
-                        </span>{' '}
-                        noun.
-                    </p>
-                </div>
-            )}
-            {showAnswer && (
                 <button
                     className='w-full py-2 bg-gray-800 hover:bg-gray-900 text-white font-bold rounded'
                     onClick={loadNewWord}
